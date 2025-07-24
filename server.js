@@ -5,8 +5,9 @@ const app = express();
 app.use(express.static(__dirname));
 app.use(express.json());
 
+// 只保留一次实例化，并把 key 写进来
 const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: 'sk-xbomVaoAYuUyOfzSxT6XiS3TRZkPWfkURrmHErhJrwSTDBSt',
     baseURL: "https://api.moonshot.cn/v1",
 });
 
