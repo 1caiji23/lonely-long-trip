@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 const client = new OpenAI({
-    apiKey: process.env.MOONSHOT_API_KEY, // It's better to use environment variables for API keys
+    apiKey: process.env.OPENAI_API_KEY,
     baseURL: "https://api.moonshot.cn/v1",
 });
 
