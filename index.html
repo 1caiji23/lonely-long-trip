@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Experience</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="background"></div>
+        <div id="foreground">
+            <img src="assets/girl.png" alt="Girl" id="girl">
+            <img src="assets/seat.png" alt="Seat" id="seat">
+        </div>
+        <div id="dialog-box" class="hidden">
+            <p id="dialog-text"></p>
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+        <div id="animation-container" class="hidden"></div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
