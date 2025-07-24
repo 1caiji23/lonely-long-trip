@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial animation or setup
         displayAnimation('Welcome!', 2000);
         dialogBox.classList.remove('hidden');
+        dialogBox.style.opacity = '0';
+        setTimeout(() => {
+            dialogBox.style.transition = 'opacity 0.5s ease';
+            dialogBox.style.opacity = '1';
+        }, 100);
     }
 
     function endGame() {
@@ -19,28 +24,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayAnimation(message, duration) {
-        animationContainer.textContent = message;
+        // Clear previous content
+        animationContainer.innerHTML = '';
         animationContainer.classList.remove('hidden');
-        setTimeout(() => {
-            animationContainer.classList.add('hidden');
-        }, duration);
+        
+        // Create a container for the text
+        const textContainer = document.createElement('div');
+        textContainer.className = 'streaming-text';
+        animationContainer.appendChild(textContainer);
+        
+        // Display text character by character
+        let index = 0;
+        const interval = setInterval(() => {
+            if (index < message.length) {
+                const char = message.charAt(index);
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.opacity = '0';
+                textContainer.appendChild(span);
+                
+                // Fade in the character
+                setTimeout(() => {
+                    span.style.transition = 'opacity 0.3s ease';
+                    span.style.opacity = '1';
+                }, 10);
+                
+                index++;
+            } else {
+                clearInterval(interval);
+                
+                // Set timeout to fade out the entire message
+                setTimeout(() => {
+                    animationContainer.style.transition = 'opacity 0.5s ease';
+                    animationContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        animationContainer.classList.add('hidden');
+                        animationContainer.style.opacity = '1'; // Reset for next time
+                    }, 500);
+                }, duration);
+            }
+        }, 50); // Adjust this value to control the speed of text streaming
     }
 
-    const sendButton = document.getElementById('send-button');
     const userInput = document.getElementById('user-input');
-    const dialogText = document.getElementById('dialog-text');
 
-    sendButton.addEventListener('click', () => {
-        const message = userInput.value;
-        if (message.trim() !== '') {
-            sendMessage(message);
-            userInput.value = '';
+    userInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            const message = userInput.value;
+            if (message.trim() !== '') {
+                sendMessage(message);
+                userInput.value = '';
+            }
         }
     });
 
     async function sendMessage(message) {
-        // Display user message
-        dialogText.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+        // Display user message in animation container
+        displayAnimation(`You: ${message}`, 2000);
 
         try {
             const response = await fetch('/chat', {
@@ -64,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function processAIResponse(response) {
-        // Display AI response
-        dialogText.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
+        // Display AI response in animation container
+        displayAnimation(`AI: ${response}`, 5000);
         // Here you would integrate the actual text-to-speech and file processing
     }
 
