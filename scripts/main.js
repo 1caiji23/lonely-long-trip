@@ -38,19 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function sendMessage(message) {
+    async function sendMessage(message) {
         // Display user message
         dialogText.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
 
-        // Simulate sending message to AI and getting a response
-        setTimeout(() => {
-            const aiResponse = `This is a simulated response to "${message}"`;
-            processAIResponse(aiResponse);
-        }, 1000);
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                processAIResponse(data.response);
+            } else {
+                processAIResponse('Error: Could not get a response from the server.');
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+            processAIResponse('Error: Could not connect to the server.');
+        }
     }
 
     function processAIResponse(response) {
-        // Simulate text-to-speech and display response
+        // Display AI response
         dialogText.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
         // Here you would integrate the actual text-to-speech and file processing
     }

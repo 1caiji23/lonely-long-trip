@@ -12,7 +12,19 @@ This is a simple gamified web application that includes a scrolling background, 
 ## How to Run
 
 1.  **Clone the repository.**
-2.  **Open `index.html` in your web browser.**
+2.  **Install the dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Set up your environment variables.** Create a `.env` file in the root of the project and add your API key:
+    ```
+    MOONSHOT_API_KEY=your_api_key
+    ```
+4.  **Start the server:**
+    ```bash
+    node server.js
+    ```
+5.  **Open `index.html` in your web browser.**
 
 ## Project Structure
 
