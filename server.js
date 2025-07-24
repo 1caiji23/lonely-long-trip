@@ -3,6 +3,8 @@ const OpenAI = require("openai");
 
 const app = express();
 app.use(express.static(__dirname));
+app.use('/scripts', express.static(__dirname + '/scripts'));
+app.use('/styles', express.static(__dirname + '/styles'));
 app.use(express.json());
 
 // 只保留一次实例化，并把 key 写进来

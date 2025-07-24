@@ -67,6 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Display AI response
         dialogText.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
         // Here you would integrate the actual text-to-speech and file processing
+        // For example, using the Web Speech API for text-to-speech
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(response);
+            window.speechSynthesis.speak(utterance);
+        }
     }
 
     // Start the game
