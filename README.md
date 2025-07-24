@@ -24,7 +24,7 @@ This is a simple gamified web application that includes a scrolling background, 
     ```bash
     node server.js
     ```
-5.  **Open `index.html` in your web browser.**
+5.  **Open your browser and navigate to `http://localhost:3000`**
 
 ## Project Structure
 

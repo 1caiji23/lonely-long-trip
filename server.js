@@ -2,6 +2,7 @@ const express = require('express');
 const OpenAI = require("openai");
 
 const app = express();
+app.use(express.static(__dirname));
 app.use(express.json());
 
 const client = new OpenAI({
