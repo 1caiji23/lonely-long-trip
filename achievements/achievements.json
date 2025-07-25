@@ -1,0 +1,60 @@
+{
+  "achievements": [
+    {
+      "id": "first_conversation",
+      "name": "初次交谈",
+      "description": "开始了第一次对话",
+      "image": "https://cdn-icons-png.flaticon.com/512/1940/1940631.png",
+      "keywords": ["你好", "嗨", "hello", "hi"]
+    },
+    {
+      "id": "emotional_breakthrough",
+      "name": "情感突破",
+      "description": "触及了内心深处的情感",
+      "image": "https://cdn-icons-png.flaticon.com/512/3588/3588614.png",
+      "keywords": ["孤独", "寂寞", "想哭", "难过", "伤心"]
+    },
+    {
+      "id": "family_reunion",
+      "name": "家庭重聚",
+      "description": "提到了爸爸或家人",
+      "image": "https://cdn-icons-png.flaticon.com/512/3030/3030336.png",
+      "keywords": ["爸爸", "父亲", "妈妈", "家人", "家庭"]
+    },
+    {
+      "id": "childhood_memory",
+      "name": "童年回忆",
+      "description": "回忆起了童年的时光",
+      "image": "https://cdn-icons-png.flaticon.com/512/2665/2665632.png",
+      "keywords": ["小时候", "童年", "回忆", "过去", "记得"]
+    },
+    {
+      "id": "hidden_strength",
+      "name": "隐藏的力量",
+      "description": "展现了坚强的一面",
+      "image": "https://cdn-icons-png.flaticon.com/512/2825/2824987.png",
+      "keywords": ["坚强", "勇敢", "不怕", "坚持", "努力"]
+    },
+    {
+      "id": "silent_tears",
+      "name": "无声的泪水",
+      "description": "情绪达到了临界点",
+      "image": "https://cdn-icons-png.flaticon.com/512/3094/3094853.png",
+      "keywords": ["哭", "眼泪", "痛苦", "绝望", "崩溃"]
+    },
+    {
+      "id": "hope_awakens",
+      "name": "希望觉醒",
+      "description": "重新找到了希望",
+      "image": "https://cdn-icons-png.flaticon.com/512/7421/7421020.png",
+      "keywords": ["希望", "明天", "未来", "相信", "期待"]
+    },
+    {
+      "id": "true_self",
+      "name": "真实的自我",
+      "description": "展现了最真实的内心",
+      "image": "https://cdn-icons-png.flaticon.com/512/3588/3588658.png",
+      "keywords": ["真实", "自己", "内心", "本来", "面具"]
+    }
+  ]
+}

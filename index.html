@@ -8,15 +8,38 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="background"></div>
-        <div id="foreground">
-            <img src="https://picsum.photos/200/300" alt="Girl" id="girl">
-            <img src="https://picsum.photos/300/200" alt="Seat" id="seat">
+        <div id="background">
+            <video autoplay loop id="bg-video" playsinline>
+                <source src="./The%20Pioneer%20-%20Top%20100%20Infinite%20Journeys%20Challenge%20(2160p%20with%2024fps).mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+            <div id="video-controls">
+                <button id="volume-toggle" class="video-control-btn" title="音量控制">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1082/1082587.png" alt="音量">
+                </button>
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                <button id="fullscreen-toggle" class="video-control-btn" title="全屏">
+                    <img src="https://cdn-icons-png.flaticon.com/512/748/748138.png" alt="全屏">
+                </button>
+            </div>
         </div>
         <div id="dialog-box" class="hidden">
-            <input type="text" id="user-input" placeholder="Type your message...">
+            <input type="text" id="user-input" placeholder="...">
         </div>
         <div id="animation-container" class="hidden"></div>
+        <div id="status-display">
+            <div class="status-value" id="status-value">0</div>
+        </div>
+        <div id="natex-assistant" class="hidden">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Natex机器人助理">
+        </div>
+        <div id="natex-suggestions" class="hidden">
+            <div class="suggestions-header">
+                <span>Natex助理</span>
+                <button id="close-natex">×</button>
+            </div>
+            <div class="natex-content"></div>
+        </div>
     </div>
     <script src="scripts/main.js"></script>
 </body>
