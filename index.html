@@ -8,27 +8,139 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="background">
-            <video autoplay loop id="bg-video" playsinline>
-                <source src="./The%20Pioneer%20-%20Top%20100%20Infinite%20Journeys%20Challenge%20(2160p%20with%2024fps).mp4" type="video/mp4">
-                您的浏览器不支持视频播放。
-            </video>
-            <div id="video-controls">
-                <button id="volume-toggle" class="video-control-btn" title="音量控制">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1082/1082587.png" alt="音量">
-                </button>
-                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
-                <button id="fullscreen-toggle" class="video-control-btn" title="全屏">
-                    <img src="https://cdn-icons-png.flaticon.com/512/748/748138.png" alt="全屏">
-                </button>
+        <!-- 游戏菜单 -->
+        <div id="game-menu" class="menu-active">
+            <div class="menu-background">
+                <img src="background-png/main.png" alt="游戏主界面" class="menu-bg">
+            </div>
+            <div class="menu-content">
+                <div class="menu-logo">
+                    <img src="background-png/logo.png" alt="游戏Logo" class="logo-img">
+                </div>
+                <div class="menu-buttons">
+                    <button class="menu-btn start-btn" onclick="startGame()">
+                        <img src="background-png/start.png" alt="开始游戏" class="btn-img">
+                    </button>
+                    <button class="menu-btn exit-btn" onclick="exitGame()">
+                        <img src="background-png/exit.png" alt="退出游戏" class="btn-img">
+                    </button>
+                </div>
             </div>
         </div>
+
+        <!-- 游戏主界面 -->
+        <div id="game-main" class="hidden">
+            <div id="background">
+                <video autoplay loop id="bg-video" playsinline>
+                    <source src="./The%20Pioneer%20-%20Top%20100%20Infinite%20Journeys%20Challenge%20(2160p%20with%2024fps).mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div id="video-controls">
+                    <button id="volume-toggle" class="video-control-btn" title="音量控制">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1082/1082587.png" alt="音量">
+                    </button>
+                    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+                    <button id="fullscreen-toggle" class="video-control-btn" title="全屏">
+                        <img src="https://cdn-icons-png.flaticon.com/512/748/748138.png" alt="全屏">
+                    </button>
+                </div>
+            </div>
         <div id="dialog-box" class="hidden">
             <input type="text" id="user-input" placeholder="...">
+            <div class="input-pulse"></div>
         </div>
         <div id="animation-container" class="hidden"></div>
         <div id="status-display">
-            <div class="status-value" id="status-value">0</div>
+            <div class="status-value" id="status-value"> </div>
+        </div>
+        <div id="terminal-icon" class="terminal-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2621/2621040.png" alt="终端">
+        </div>
+        <div id="ai-os" class="hidden">
+            <div class="os-header">
+                <span>AI操作系统</span>
+                <button id="close-ai-os">×</button>
+                <button id="reset-ai-memory" title="重置AI记忆">🔄</button>
+            </div>
+            <div class="os-apps">
+                <div class="app-grid">
+                    <div class="app-item" data-app="novel">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2436/2436874.png" alt="小说">
+                        <span>小说</span>
+                    </div>
+                    <div class="app-item" data-app="music">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2302/2302967.png" alt="音乐">
+                        <span>音乐</span>
+                    </div>
+                    <div class="app-item" data-app="weather">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="天气">
+                        <span>天气</span>
+                    </div>
+                    <div class="app-item" data-app="news">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="新闻">
+                        <span>新闻</span>
+                    </div>
+                    <div class="app-item" data-app="translate">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" alt="翻译">
+                        <span>翻译</span>
+                    </div>
+                    <div class="app-item" data-app="jokes">
+                        <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="笑话">
+                        <span>笑话</span>
+                    </div>
+                </div>
+            </div>
+            <div class="app-content">
+                <div id="app-novel" class="app-panel hidden">
+                    <h3>波兰免费文学</h3>
+                    <div class="novel-content">
+                        <div style="margin-bottom: 15px;">
+                            <input type="text" id="novel-search" placeholder="输入小说名称或作者..." style="width: 70%; padding: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: white;">
+                            <button onclick="searchNovels()" style="padding: 8px 15px; background: rgba(0,188,212,0.3); color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">搜索</button>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <button onclick="browseByGenre()" style="padding: 8px 15px; background: rgba(156,39,176,0.3); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">按体裁浏览</button>
+                        </div>
+                        <div id="novel-results" style="margin-top: 15px; max-height: 300px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+                <div id="app-music" class="app-panel hidden">
+                    <h3>AI音乐播放器</h3>
+                    <div class="music-controls">
+                        <button id="play-music">▶️</button>
+                        <button id="pause-music">⏸️</button>
+                        <button id="next-music">⏭️</button>
+                        <input type="range" id="music-volume" min="0" max="100" value="50">
+                    </div>
+                    <div id="music-info">
+                        <p>正在播放: <span id="current-track">暂无</span></p>
+                    </div>
+                </div>
+                <div id="app-weather" class="app-panel hidden">
+                    <h3>天气查询</h3>
+                    <div style="padding: 20px; text-align: center;">
+                        <p>天气功能开发中...</p>
+                    </div>
+                </div>
+                <div id="app-news" class="app-panel hidden">
+                    <h3>新闻资讯</h3>
+                    <div style="padding: 20px; text-align: center;">
+                        <p>新闻功能开发中...</p>
+                    </div>
+                </div>
+                <div id="app-translate" class="app-panel hidden">
+                    <h3>翻译工具</h3>
+                    <div style="padding: 20px; text-align: center;">
+                        <p>翻译功能开发中...</p>
+                    </div>
+                </div>
+                <div id="app-jokes" class="app-panel hidden">
+                    <h3>笑话大全</h3>
+                    <div id="jokes-content" style="padding: 20px; max-height: 300px; overflow-y: auto;">
+                        <p>正在加载笑话...</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="natex-assistant" class="hidden">
             <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Natex机器人助理">
