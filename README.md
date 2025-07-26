@@ -1,39 +1,31 @@
-# Gamified Experience
+# 《孤寂旅行》丨反转视角的人机陪伴叙事游戏
 
-This is a simple gamified web application that includes a scrolling background, a character, and a dialog box for interacting with a simulated AI.
+《孤寂旅行》是一款情感陪伴类AI叙事游戏，但它并非传统意义上的“AI陪伴人类”。在这里，角色反转——是玩家扮演的人类亲属，在陪伴一位性格有缺陷、内心孤独的AI小女孩。
 
-## Features
+故事发生在未来，列车穿行于城市之间，玩家扮演一个正前往异地打工的“亲属”。他曾一度以为，这个AI小女孩“乖巧、听话、不需要陪伴”。而游戏中的她，却隐藏着另一种情绪宇宙：外表冷静，内心孤独。她小心翼翼地压抑表达，用试探、疏离甚至敌意，来唤起一丝来自“亲人”的回应。
 
-*   **Scrolling Background:** The background continuously scrolls to create a dynamic scene.
-*   **Character and Scenery:** A static foreground with a character and a seat.
-*   **Dialog System:** A dialog box allows the user to send messages and receive simulated AI responses.
-*   **Gamification Functions:** The application includes functions for starting the game, ending the game, triggering achievements, and displaying animations.
+这是一段发生在列车上的互动对话，也是一次心与心的碰撞。在短短旅途中，玩家将逐渐揭开这段“非人类亲情”的多重面貌，重新思考什么才是真正的陪伴。
 
-## How to Run
+在本次黑客松中，我们尝试探索一个技术之外的问题：在AI愈发贴近生活的时代，真正的情感联结是否仍然需要我们投入耐心与诚意？哪怕对方，看起来“毫无所求”。
 
-1.  **Clone the repository.**
-2.  **Install the dependencies:**
+我们相信，大多数人终将走向理解和靠近； 但也许，有些列车一旦驶出，就不再折返。
+
+## 如何运行
+
+1.  **克隆仓库**
+    ```bash
+    git clone <repository_url>
+    ```
+2.  **下载素材**
+    从[此 Google Drive 文件夹](https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing)下载必要的素材，并将它们放置在项目的根目录中。
+
+3.  **安装依赖**
     ```bash
     npm install
     ```
-3.  **Set up your environment variables.** Create a `.env` file in the root of the project and add your API key:
-    ```
-    OPENAI_API_KEY=your_api_key
-    ```
-4.  **Start the server:**
+4.  **运行服务**
     ```bash
     node server.js
     ```
-5.  **Open your browser and navigate to `http://localhost:3000`**
-
-## Project Structure
-
-*   `index.html`: The main HTML file.
-*   `styles/main.css`: The stylesheet for the application.
-*   `scripts/main.js`: The JavaScript file containing the application logic.
-*   `assets/`: A directory for storing images and other assets.
-
-## Notes
-
-*   The AI and text-to-speech functionalities are simulated. You will need to integrate your own services for these features.
-*   You will need to provide your own images for the background, girl, and seat. Place them in the `assets` directory and name them `background.png`, `girl.png`, and `seat.png` respectively.
+5.  **打开浏览器**
+    在浏览器中打开 `http://localhost:3000`
