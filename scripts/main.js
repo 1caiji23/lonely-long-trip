@@ -116,6 +116,29 @@ function startGame() {
         }
     }
     
+    // 添加空格键跳过功能
+    let skipRequested = false;
+    
+    // 监听空格键按下事件
+    const skipHandler = (event) => {
+        if (event.code === 'Space') {
+            skipRequested = true;
+            // 移除事件监听器
+            document.removeEventListener('keydown', skipHandler);
+            
+            // 立即完成所有动画
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    document.body.removeChild(overlay);
+                }
+                initGame();
+            }, 500);
+        }
+    };
+    
+    document.addEventListener('keydown', skipHandler);
+    
     // 开始逐行显示
     showNextLine();
 }
