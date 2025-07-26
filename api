@@ -1,0 +1,24 @@
+curl https://ark.cn-beijing.volces.com/api/v3/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer f26f57ca-4301-4eb7-8e5e-0bde835ad73f" \
+  -d $'{
+    "model": "doubao-seed-1-6-flash-250715",
+    "messages": [
+        {
+            "content": [
+                {
+                    "text": "图片主要讲了什么?",
+                    "type": "text"
+                },
+                {
+                    "image_url": {
+                        "url": "https://ark-project.tos-cn-beijing.ivolces.com/images/view.jpeg"
+                    },
+                    "type": "image_url"
+                }
+            ],
+            "role": "user"
+        }
+    ]
+}'
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests

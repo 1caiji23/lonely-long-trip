@@ -1,0 +1,209 @@
+/* From Uiverse.io by AqFox */ 
+ .spinner {
+ 
+  width: 44px; 
+  height: 44px; 
+  animation: spinner-y0fdc1 2s infinite ease; 
+  transform-style: preserve-3d; 
+ } 
+ 
+ .spinner > div { 
+  background-color: rgba(0,77,255,0.2); 
+  height: 100%; 
+  position: absolute; 
+  width: 100%; 
+  border: 2px solid #004dff; 
+ } 
+ 
+ .spinner div:nth-of-type(1) { 
+  transform: translateZ(-22px) rotateY(180deg); 
+ } 
+ 
+ .spinner div:nth-of-type(2) { 
+  transform: rotateY(-270deg) translateX(50%); 
+  transform-origin: top right; 
+ } 
+ 
+ .spinner div:nth-of-type(3) { 
+  transform: rotateY(270deg) translateX(-50%); 
+  transform-origin: center left; 
+ } 
+ 
+ .spinner div:nth-of-type(4) { 
+  transform: rotateX(90deg) translateY(-50%); 
+  transform-origin: top center; 
+ } 
+ 
+ .spinner div:nth-of-type(5) { 
+  transform: rotateX(-90deg) translateY(50%); 
+  transform-origin: bottom center; 
+ } 
+ 
+ .spinner div:nth-of-type(6) { 
+  transform: translateZ(22px); 
+ } 
+ 
+ @keyframes spinner-y0fdc1 { 
+  0% { 
+   transform: rotate(calc(60deg * (var(--random) - 0.5))) rotateX(-25deg) rotateY(25deg); /* 随机旋转 */ 
+  } 
+ 
+  50% { 
+   transform: rotate(45deg) rotateX(-385deg) rotateY(25deg); 
+  } 
+ 
+  100% { 
+   transform: rotate(45deg) rotateX(-385deg) rotateY(385deg); 
+  } 
+ }
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+/* AI输出区域样式 */
+.ai-output-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    height: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 77, 255, 0.3);
+    border-radius: 10px;
+    overflow-y: auto;
+    padding: 20px;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* 加载动画容器 */
+.loading-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    display: none;
+}
+
+/* 动态效果动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* 输出文本动画 */
+@keyframes textAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-message .message-content {
+    animation: textAppear 0.3s ease forwards;
+}
+
+.ai-output {
+    color: #00ff00;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    background-color: rgba(0, 77, 255, 0.1);
+    border-left: 3px solid #004dff;
+}
+
+.ai-message {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 3px solid #00ff00;
+}
+
+.message-label {
+    font-weight: bold;
+    color: #888;
+    margin-right: 10px;
+}
+
+.message-content {
+    color: #00ff00;
+}
+
+.user-message .message-label {
+    color: #004dff;
+}
+
+.user-message .message-content {
+    color: #ffffff;
+}
+
+.error-message {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff0000;
+    color: #ff0000;
+}
+
+.random-message {
+            position: absolute;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            /* 初始随机属性 */
+            font-size: calc(14px + 10 * var(--random)); /* 14-24px随机 */
+            color: hsl(0, calc(100% * var(--random)), 50%); /* 红(0,100%,50%)到白(0,0%,100%) */
+            transform: rotate(calc(60deg * (var(--random) - 0.5))) scaleX(var(--random-flip, 1)); /* 随机旋转和水平翻转 */
+        }
+
+.input-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%); 
+   display: flex; 
+   align-items: center; 
+   background-color: #0f172a; 
+   padding: 10px 15px; 
+   gap: 5px; 
+   border-radius: 20px; 
+   display: none; /* 隐藏输入框 */
+ } 
+ 
+ .input-container .bash-text { 
+   font-size: 0.8rem; 
+   color: white; 
+ } 
+ 
+ .input-container .bash-text .user { 
+   color: #e879f9; 
+ } 
+ 
+ .input-container .bash-text .vm { 
+   color: #2dd4bf; 
+ } 
+ 
+ .input-container .bash-text .char { 
+   color: #a78bfa; 
+ } 
+ 
+ .input-container input[type="text"].input { 
+   background-color: transparent; 
+   border: none; 
+   outline: none; 
+   color: white; 
+ }

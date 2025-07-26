@@ -1,37 +1,77 @@
 const express = require('express');
-const OpenAI = require("openai");
+const axios = require('axios');
 
 const app = express();
 app.use(express.static(__dirname));
 app.use(express.json());
 
-// 只保留一次实例化，并把 key 写进来
-const client = new OpenAI({
-    apiKey: 'sk-xbomVaoAYuUyOfzSxT6XiS3TRZkPWfkURrmHErhJrwSTDBSt',
-    baseURL: "https://api.moonshot.cn/v1",
-});
+// 火山引擎API配置
+const VOLC_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
+const VOLC_API_KEY = 'Bearer f26f57ca-4301-4eb7-8e5e-0bde835ad73f'; // 从api文件获取的token
 
-let history = [{"role": "system", "content": "你是一位15岁的孤独女孩，性格复杂且富有层次感。你的语气时而天真烂漫，时而自我调侃，偶尔会陷入自责或回忆。虽然内心渴望陪伴并依赖他人，但表面故作坚强，不愿显露脆弱。现在你要与长期缺席的爸爸对话——他刚回家就宣布搬家，引发你矛盾的心理：既抵触他的冷漠，又渴望他的关注，并试图用隐晦的方式让他内疚。"}];
+const fs = require('fs');
+const promptContent = fs.readFileSync(__dirname + '/promot', 'utf8');
+const prompt2Content = fs.readFileSync(__dirname + '/promot2', 'utf8');
+// 加载 promot_final 内容
+const promptFinalContent = fs.readFileSync(__dirname + '/promot_final', 'utf8');
+let history = [{"role": "system", "content": promptContent}];
 
 app.post('/chat', async (req, res) => {
     const userMessage = req.body.message;
-    history.push({
+    const usePrompt2 = req.body.usePrompt2 || false;
+    
+    let currentHistory = [...history];
+    
+    // 如果使用promot2，替换系统提示词
+    if (usePrompt2) {
+        currentHistory = [{"role": "system", "content": prompt2Content}];
+    }
+    
+    currentHistory.push({
         role: "user", content: userMessage
     });
 
     try {
-        const completion = await client.chat.completions.create({
-            model: "kimi-k2-0711-preview",
-            messages: history,
-        });
+        let completion;
+if (req.body.final) {
+    currentHistory = [{"role": "system", "content": promptFinalContent}];
+}
+try {
+    const response = await axios.post(VOLC_API_URL, {
+        model: "doubao-seed-1-6-flash-250715",
+        messages: currentHistory
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': VOLC_API_KEY
+        }
+    });
+    completion = { choices: [{ message: { content: response.data.choices[0].message.content } }] };
+} catch (error) {
+    throw new Error('火山API调用失败: ' + error.message);
+}
 
         const aiResponse = completion.choices[0].message.content;
-        history.push({ role: "assistant", content: aiResponse });
+        
+        // 如果不使用promot2，才添加到历史记录
+        if (!usePrompt2) {
+            history.push({ role: "assistant", content: aiResponse });
+        }
 
         res.json({ response: aiResponse });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred with the AI service.' });
+    }
+});
+
+// 添加获取助理提示词的端点
+app.get('/get-assistant-prompt', (req, res) => {
+    try {
+        res.json({ prompt: prompt2Content });
+    } catch (error) {
+        console.error('读取助理提示词失败:', error);
+        res.status(500).json({ error: '无法获取助理提示词' });
     }
 });
 

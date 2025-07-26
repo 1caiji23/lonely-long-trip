@@ -1,0 +1,20 @@
+// Please install OpenAI SDK first: `npm install openai`
+
+import OpenAI from "openai";
+
+// 由于代码中存在重复声明，这里推测只需保留一处，以下为原代码保持不变
+const openai = new OpenAI({
+        baseURL: 'https://api.deepseek.com',
+        apiKey: 'sk-1a9e1d23a7c04e3bbfb5cdadef6d3f7a'
+});
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    model: "deepseek-chat",
+  });
+
+  console.log(completion.choices[0].message.content);
+}
+
+main();// Please install OpenAI SDK first: `npm install openai`
