@@ -11,21 +11,24 @@
 我们相信，大多数人终将走向理解和靠近； 但也许，有些列车一旦驶出，就不再折返。
 
 ## 如何运行
-
+前置需求：已安装npm管理工具
+**一（github下载）：**
 1.  **克隆仓库**
     ```bash
     git clone <repository_url>
     ```
 2.  **下载素材**
-    从[此 Google Drive 文件夹](https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing)下载必要的素材，并将它们放置在项目的根目录中。
-
-3.  **安装依赖**
+    从[此 Google Drive 文件夹](https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing)下载必要的素材，并将它们放置在项目的根目录中，cd到仓库。
+    
+**二（直接从谷歌云盘下载，推荐）**
+     从[此 Google Drive 文件夹]([https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing](https://drive.google.com/file/d/1iK0NraBcmQe9-5fZT5M9hBZxepn0PKWv/view?usp=drive_link))下载压缩包后解压，cd到仓库
+4.  **安装依赖**
     ```bash
     npm install
     ```
-4.  **运行服务**
+5.  **运行服务**
     ```bash
     node server.js
     ```
-5.  **打开浏览器**
+6.  **打开浏览器**
     在浏览器中打开 `http://localhost:3000`
