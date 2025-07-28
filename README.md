@@ -18,11 +18,11 @@
     git clone <repository_url>
     ```
 2.  **下载素材**
-    从[此 Google Drive 文件夹](https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing)下载必要的素材，并将它们放置在项目的根目录中，cd到仓库。
+    从[此 Google Drive 文件夹]([https://drive.google.com/drive/folders/1scrVDLcV9Uk4Wisu_6HDBIyPPKFQj0tM?usp=drive_link](https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=drive_link))下载必要的素材，并将它们放置在项目的根目录中，cd到仓库。
     
 **二（直接从谷歌云盘下载，推荐）**
-     从[此 Google Drive 文件夹]([[https://drive.google.com/drive/folders/1sQaHvVESHM4oAnGiRVhR3jLH8-r6RumY?usp=sharing](https://drive.google.com/file/d/1iK0NraBcmQe9-5fZT5M9hBZxepn0PKWv/view?usp=drive_link](https://drive.google.com/file/d/1iK0NraBcmQe9-5fZT5M9hBZxepn0PKWv/view?usp=drive_link)))下载压缩包后解压，cd到仓库
-     ****
+     从[此 Google Drive 文件夹](https://drive.google.com/drive/folders/1scrVDLcV9Uk4Wisu_6HDBIyPPKFQj0tM?usp=drive_link))下载压缩包后解压，cd到仓库
+**三：启动游戏**  
 4.  **安装依赖**
     ```bash
     npm install
@@ -33,3 +33,6 @@
     ```
 6.  **打开浏览器**
     在浏览器中打开 `http://localhost:3000`
+预览：
+<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/1442d862-af2e-4fb8-a8d4-d7f5741c538d" />
+
